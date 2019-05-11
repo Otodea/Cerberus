@@ -1,4 +1,4 @@
-# Group 20 Project 2
+# Cerberus
 ## Technologies
 * Front end created in React found in web directory.
 * Backend created in Java with Maven and Spring boot, found in VideoServer directory and webcamclient directory
