@@ -1,0 +1,38 @@
+.team-page {
+  text-align: center;
+}
+
+.team-paragraph-set{
+  text-align: justify;
+}
+
+.team-paragraph-1 {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color:black;
+}
+
+.header-image {
+  width:100%;
+  height:300px;
+  background: url('https://goo.gl/LpQMuB');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+}
+
+.team-profiles-row  {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  color:black;
+}
+
+.team-position{
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.thumbnail.width-fix > img {
+  width: 100%;
+}

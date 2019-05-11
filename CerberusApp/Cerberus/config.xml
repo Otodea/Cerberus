@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.cpen291.cerberus" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Cerberus</name>
+    <description>
+        G20 Cerberus security app.
+    </description>
+    <author email="ben.harder2@gmail.com">
+        Group G20
+    </author>
+    <content src="index.html" />
+    <feature name="http://api.phonegap.com/1.0/network" />
+    <access origin="*" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <icon src="icon.png" />
+    <plugin name="phonegap-plugin-push" spec="https://github.com/phonegap/phonegap-plugin-push" />
+    <engine name="android" spec="~7.0.0" />
+    <engine name="browser" spec="^5.0.3" />
+</widget>

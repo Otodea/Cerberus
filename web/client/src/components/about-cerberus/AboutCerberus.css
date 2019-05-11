@@ -1,0 +1,91 @@
+.about-cerberus-page {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+
+.about-paragraph-set1{
+  margin-top: 30px;
+  margin-bottom: 70px;
+  text-align: left;
+  text-align: justify;
+}
+
+.about-paragraph-set2{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-align: justify;
+}
+
+.about-hr {
+  color: black;
+  background-color: black;
+  height: 1px;
+
+}
+
+.about-img-icon{
+
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 200px;
+  border-radius:50%;
+
+}
+
+
+.about-img {
+
+    margin-top: 50px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 500px;
+}
+
+.about-ceberus-footer-padding {
+  margin-bottom: 10vh;
+}
+
+@media screen and (max-width: 1210px) {
+  .about-img {
+      margin-top: 90px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      width: 380px;
+    }
+
+    .about-img-icon{
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      width: 140px;
+      border-radius:50%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+  .about-h1{
+
+      text-align: center;
+
+  }
+}
+
+@media screen and (max-width: 991px) {
+    .about-img {
+      margin-top: 0px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      width: 300px;
+    }
+
+
+}

@@ -1,0 +1,27 @@
+{
+  "name": "react-express-bp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"mvn -f ./server spring-boot:run\" \"npm run client\"",
+    "server": "nodemon -V --ignore 'client/*' server/app.js --exec babel-node --presets es2017",
+    "client": "babel-node start-client.js --presets es2017",
+    "build:client": "cd client && npm run build",
+    "production": "NODE_ENV=production PORT=4999 babel-node server/app.js --presets es2017"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2017": "^6.24.1",
+    "body-parser": "~1.17.1",
+    "concurrently": "^3.5.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "method-override": "^2.3.9",
+    "morgan": "~1.8.1",
+    "nodemon": "^1.11.0",
+    "react-bootstrap": "^0.32.1"
+  }
+}

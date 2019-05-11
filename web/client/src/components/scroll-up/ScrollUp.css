@@ -1,0 +1,22 @@
+.ScrollUpButton__Container{
+    background-color: white;
+    border-radius: 5000%;
+    border: 10px solid white;
+    height: 50px;
+    position: fixed;
+    bottom: 20px;
+    width: 50px;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition-property: opacity, right;
+    transition-property: opacity, right;
+    cursor: pointer;
+    opacity: 0;
+    right: -75px;
+}
+
+.ScrollUpButton__Toggled{
+  opacity: 1;
+  left: 10px;
+  margin-bottom: 15px;
+}

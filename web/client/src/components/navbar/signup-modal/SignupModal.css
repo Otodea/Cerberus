@@ -1,0 +1,7 @@
+.signup-modal-close {
+  float: right;
+}
+
+.signup-modal-close:hover {
+  cursor: pointer;
+}

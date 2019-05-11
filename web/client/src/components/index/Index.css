@@ -1,0 +1,110 @@
+.index-page {
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+.index-landing-image {
+  width:100%;
+  height:500px;
+  background: url('https://goo.gl/LpQMuB');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+}
+.bgimage h5 {
+  color:white;
+  text-shadow:2px 2px #333;
+}
+
+
+
+.index-landing-header {
+
+  margin-top: 100px;
+  margin-bottom: 50px;
+  color:white;
+  font-size: 50px;
+  text-shadow:2px 2px #333;
+
+}
+
+@media screen and (max-width: 1200px) {
+  .index-landing-header {
+    font-size:45px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+  .index-landing-header {
+    font-size:40px;
+    }
+}
+
+
+.index-landing-subheader {
+
+  margin-bottom: 30px;
+  color:white;
+  font-size: 35px;
+  text-shadow:2px 2px #333;
+}
+
+
+
+
+@media screen and (max-width: 1200px) {
+  .index-landing-subheader {
+    font-size:30px;
+    }
+
+
+}
+
+@media screen and (max-width: 568px) {
+  .index-landing-sunheader {
+    font-size:15px;
+    }
+
+
+}
+
+
+
+.index-header-button {
+
+  margin-top: 10px;
+  margin-bottom: 100px;
+  color:white;
+  font-size: 35px;
+
+}
+
+.index-rows {
+
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color:black;
+
+}
+
+
+.index-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 350px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+@media screen and (max-width: 400px) {
+  .index-img {
+    width: 250px;
+    }
+}
+
+.index-img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}

@@ -1,0 +1,21 @@
+{
+  "name": "com.cpen291.cerberus",
+  "version": "1.0.0",
+  "displayName": "Cerberus",
+  "cordova": {
+    "platforms": [
+      "android",
+      "browser"
+    ],
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "phonegap-plugin-push": {}
+    }
+  },
+  "dependencies": {
+    "cordova-android": "~7.0.0",
+    "cordova-browser": "^5.0.3",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "phonegap-plugin-push": "git+https://github.com/phonegap/phonegap-plugin-push.git"
+  }
+}

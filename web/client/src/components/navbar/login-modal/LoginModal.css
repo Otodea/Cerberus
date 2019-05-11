@@ -1,0 +1,7 @@
+.login-modal-close {
+  float: right;
+}
+
+.login-modal-close:hover {
+  cursor: pointer;
+}

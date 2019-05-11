@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="connect-src *;" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <platform name="android">
+        <icon src="icon.png" width="180" height="180" />
+    </platform>
+
+    <title>Cerberus</title>
+    <style>
+        .page-header {
+            border-bottom-style: inset;
+            border-bottom-width: 2px;
+            padding-top: 5px;
+        }
+
+        .jumbotron {
+            margin-top: 5px;
+            background: rgb(107, 107, 107);
+            border-left-style: solid;
+            border-left-color: grey;
+            border-left-width: 10px;
+            color: white;
+
+        }
+
+        .btn {
+            height: 60px;
+        }
+
+        #profileJumbotron {
+            background: rgb(189, 199, 252);
+            border-left-color: rgb(31, 56, 196);
+            border-left-width: 10px;
+            border-left-style: solid;
+            padding: 20px;
+            color: black;
+        }
+
+        #lockStatusJumbotron {
+            background: rgb(255, 229, 173);
+            border-left-color: rgb(202, 115, 15);
+            border-left-width: 10px;
+            border-left-style: solid;
+            padding: 20px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>
+                <center>Cerberus</center>
+                <div id="testDiv">
+
+                </div>
+            </h1>
+        </div>
+        <div id="logInDiv">
+            <form class="form-signin">
+                <h2 class="form-signin-heading text-center">
+                    <i>Please sign in</i>
+                </h2>
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input type="username" id="inputUsername" class="form-control" placeholder="Username" style="margin-bottom: 20px" required
+                    autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" style="margin-bottom: 20px" placeholder="Password" required>
+                <p class="text-center bg-warning" id="signInResult"></p>
+
+                <div id="signInWrapper" class="wrapper text-center">
+                    <div class="btn-group" role="group" aria-label="signInButtonGroup">
+                        <button id="signInButton" class="btn btn-lg btn-primary" type="button">Sign in</button>
+                        <button id="registerButton" class="btn btn-lg btn-primary" type="button">Register</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div id="loggedInContent">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Chat</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="jumbotron">
+                        <p1>This application lets you control your security system remotely from your mobile device. Use the
+                            interface below to unlock/lock your door or view a snapshot through your security camera.</p1>
+                    </div>
+                    <div class="jumbotron" id="lockStatusJumbotron">
+                        <div id="lockStatus" class="text-center"></div>
+                    </div>
+                    <p class="text-center bg-danger" id="lockSyncResult"></p>
+                    <button type="button" id="lock" class="btn btn-primary btn-block">lock</button>
+                    <button type="button" id="unlock" class="btn btn-danger btn-block">unlock</button>
+                    <button type="button" id="snapshotButton" class="btn btn-info btn-block" data-toggle="modal" data-target="#snapshotModal">snapshot</button>
+                    <div class="modal fade" tabindex="-1" id="snapshotModal" role="dialog" aria-labelledby="snapshotModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="snapshotModalTitle">Security Camera Snapshot</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-center bg-warning" id="imageFetchResult"></p>
+                                    <img class="center" id="snapshot" style="height:auto; width:auto; margin-left: auto; margin-right: auto; display: block;"></img>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" id="refreshButton" class="btn btn-primary">Refresh</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="jumbotron" id="profileJumbotron">
+                        <h6 style="display:inline">Username: </h6>
+                        <p1 id="username"></p1>
+                        <br>
+                        <h6 style="display:inline">SerialID: </h6>
+                        <p1 id="serialID"></p1>
+                    </div>
+                    <p class="text-center">Use the form below if you would like to change your serialID.</p>
+                    <p class="text-center bg-warning" id="setSerialIDResult"></p>
+                    <input type="text" id="newSerialID" class="form-control">
+                    <button type="button" id="changeSerialIDButton" class="btn btn-info btn-block" style="margin-top: 20px">Change</button>
+                    <button type="button" id="signOutButton" class="btn btn-primary btn-block">Sign out</button>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="jumbotron">
+                        <p1>Use the chat box below to message whoever may be at your door.</p1>
+                    </div>
+                    <textarea readonly id="chatBox" class="form-control" rows="4" style="margin-bottom: 20px; background-color: #cadbff"></textarea>
+                    <textarea id="messageBox" class="form-control" rows="4" placeholder="Type your message here"></textarea>
+                    <br>
+                    <button type="button" id="sendMessageButton" class="btn btn-primary btn-block">send</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script>
+        function Main() {
+            $.support.cors = true;
+            $.mobile.allowCrossDomainPages = true;
+        }
+
+        var username;
+        var loggedIn = false;
+        var lastMessage = ''; // Used to prevent duplicate messages sending.
+
+
+        $(document).ready(function () {
+            displayIfLogged(); // Inital page load with logged out state.
+
+            // Fetch new image and lock status.
+            setInterval(function () {
+                if (loggedIn) {
+                    receiveMessage();
+                    syncLock();
+                    // checkForVisitor();
+                }
+            }, 100);
+
+            /*
+             * DOM INTERACTIONS
+             */
+
+            // Set lock state to 1. 1 means locked.
+            $('#lock').click(function () {
+                setLockState(0);
+            });
+
+            // Set lock state to 0. 0 means unlocked.
+            $('#unlock').click(function () {
+                setLockState(1);
+            });
+
+            // Attempt to sign in on button click.
+            $("#signInButton").click(function () {
+                signIn();
+            });
+
+            // Sign out on button click.
+            $("#signOutButton").click(function () {
+                signOut();
+            });
+
+            // Register a new user on button click.
+            $("#registerButton").click(function () {
+                register();
+            });
+
+            // Set serialID on button press.
+            $("#changeSerialIDButton").click(function () {
+                setSerialID(username);
+            });
+
+            // Refresh the image from the webcam.
+            $('#refreshButton').click(function () {
+                getImage();
+            });
+
+            // Display the webcam image in the modal.
+            $('#snapshotButton').click(function () {
+                getImage();
+            });
+
+            // Send the type messaged to the visitor as well as to the chat box.
+            $("#sendMessageButton").click(function () {
+                var message = $('#messageBox').val();
+                sendMessage(message);
+                $('#messageBox').val('');
+            });
+
+            /*
+             *  HOME PAGE CODE (LOCK AND WEBCAM)
+             */
+
+            // Retrieve image from the server and display it.
+            function getImage() {
+                $.ajax({
+                    url: "http://38.88.74.71:80/image/".concat(username),
+                    type: "GET",
+                    data: { username: username }
+                }).done(function (data, textStatus, jqXHR) {
+                    $("#snapshot").attr('src', 'data:image/jpeg;base64,' + (data));
+                    $("#imageFetchResult").html("");
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    $("#imageFetchResult").html("Failed to retrieve image. Error: " + errorThrown);
+                    // alert("fail: " + errorThrown);
+                });
+            }
+
+            // Gets to the server to set the lock state.
+            function setLockState(lockState) {
+                if (lockState == 0) {
+                    $.ajax({
+                        url: "http://38.88.74.71:80/lockdoormobile/".concat(username),
+                        type: "GET",
+                        data: { serialID: $("#serialID").html() },
+                        dataType: "text",
+                        error: function() {
+                            alert("Failed to set lock state.");
+                        }
+                    });
+                }
+                else if (lockState == 1) {
+                    $.ajax({
+                        url: "http://38.88.74.71:80/unlockdoormobile/".concat(username),
+                        type: "GET",
+                        data: { serialID: $("#serialID").html() },
+                        dataType: "text",
+                        error: function() {
+                            alert("Failed to set lock state.");
+                        }
+                    });
+                }
+            }
+
+            // Queries the server for the current lock state.
+            function getLockState() {
+                return $.get("http://38.88.74.71:80/getlockstate/".concat(username)
+                    , {username: username}, function (data) {
+                        $("#lockSyncResult").html("");
+                    }).fail(function (data) {
+                        $("#lockSyncResult").html("Failed to get lock state. Error: " + data.jqXHR);
+                    });
+            }
+
+            // Updates the lock state. Setting the lock state using
+            // the button should be allowed to work dispite this.
+            function syncLock() {
+                $.when(getLockState()).then(function (data) {
+                    var isLocked = data;
+                    if (isLocked == 0)
+                        $("#lockStatus").html("Your lock is currently: locked");
+                    else if (isLocked == 1)
+                        $("#lockStatus").html("Your lock is currently: unlocked");
+                    else if (isLocked == -1)
+                        $("#lockStatus").html("Your lock is not connected.");
+                }, function () {
+                    $("#lockStatus").html("Your lock is currently: unknown :(");
+                });
+            }
+
+            // Checks for a visitor if someone is knocking on the door.
+            function checkForVisitor() {
+                var query = queryKnock();
+                $.when(query).done(function () {
+                    if (query.data) {
+                        alert("Someone is knocking on your door!");
+                    }
+                });
+            }
+
+            // Queries the server for knocking on the door.
+            function queryKnock() {
+                return $.get("http://38.88.74.71:80/knock/".concat(username), { username: username });
+            }
+
+
+            /*
+             *  PROFILE CODE (SIGN IN, SIGN OUT, REGISTER, SERIALID)
+             */
+
+            // Sign in to the application.
+            function signIn() {
+                username = $("#inputUsername").val();
+                var password = $("#inputPassword").val();
+
+                $.when(attemptLogin(username, password)).done(function () {
+                    displayIfLogged();
+                });
+            }
+
+            // Attempt to login to the server.
+            function attemptLogin(username, password) {
+                return $.get("http://38.88.74.71:80/login", { username: username, password: password },
+                    function (data) {
+
+                        $("#signInResult").addClass("bg-warning");
+                        $("#signInResult").removeClass("bg-success");
+
+                        if (data === "ERR: INVALID PASS") {
+                            $("#signInResult").html("Incorrect password.");
+                        } else if (data === "ERR: NO USER") {
+                            $("#signInResult").html("No user matches those credentials.");
+                        } else {
+                            loggedIn = true;
+                            $("#signInResult").html("");
+                            setProfileDetails(username);
+
+                            // Empty the fields upon successful login.
+                            $("#inputUsername").val('');
+                            $("#inputPassword").val('');
+                        }
+                    }).fail(function (data) {
+                        $("#signInResult").html("Sign in request to server failed. Code: " + data.jqXHR);
+                    });
+            }
+
+            // Register a new user.
+            function register() {
+                var username = $("#inputUsername").val();
+                var password = $("#inputPassword").val();
+                if (username == "" || password == "") {
+                    $("#signInResult").html("You did not enter all the required fields.");
+                }
+                else {
+                    attemptSignup(username, password);
+                }
+            }
+
+            // Attempt to sign up.
+            function attemptSignup(username, password) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://38.88.74.71:80/createusermobile",
+                    data: { username: username, password: password },
+                    success: function (data) {
+                        if (!data) {
+                            $("#signInResult").addClass("bg-warning");
+                            $("#signInResult").removeClass("bg-success");
+                            $("#signInResult").html("That username is taken.");
+                        }
+                        else {
+                            $("#signInResult").removeClass("bg-warning");
+                            $("#signInResult").addClass("bg-success");
+                            $("#signInResult").html("User created successfully.");
+                        }
+                    },
+                    error: function (e) {
+                        $("#signInResult").addClass("bg-warning");
+                        $("#signInResult").removeClass("bg-success");
+                        $("#signInResult").html("Register request to server failed. Code: " + e.jqXHR);
+                        // alert('Error: ' + e.message);
+                    }
+                });
+            }
+
+            // Sign out of the application.
+            function signOut() {
+                loggedIn = false;
+                displayIfLogged();
+            }
+
+            // Check if logged in and display content accordingly.
+            function displayIfLogged() {
+                if (!loggedIn) {
+                    document.getElementById("loggedInContent").style.display = "none";
+                    document.getElementById("logInDiv").style.display = "block";
+                }
+                else {
+                    document.getElementById("loggedInContent").style.display = "block";
+                    document.getElementById("logInDiv").style.display = "none";
+                }
+            }
+
+            // Set user profile details.
+            function setProfileDetails(username) {
+                $('#username').html(username);
+                $("#setSerialIDResult").html("");
+
+                // Set serialID when the ajax call finishes.
+                $.when(getSerialID(username)).done(function (data, textStatus, jqXHR) {
+                    $('#serialID').html(data);
+                }).fail(function () {
+                    alert("get serialID failed");
+                });
+            }
+
+            // Set a new serialID for a user.
+            function setSerialID(username) {
+                if ($("#newSerialID").val().length != 8) {
+                    $("#setSerialIDResult").html("Serial ID must be 8 characters long.")
+                }
+                else $.get("http://38.88.74.71:80/setserialidmobile/".concat(username), { username: username, serialID: $('#newSerialID').val() },
+                    function (data) {
+                        setProfileDetails(username);
+                        $("#setSerialIDResult").html("")
+                        $("#newSerialID").val("");
+                    }).fail(function () {
+                        alert("Set serialID failed.");
+                    });
+            }
+
+            // Returns an ajax call to get a users serialID.
+            function getSerialID(username) {
+                return $.get("http://38.88.74.71:80/getserialid/".concat(username), { username: username });
+            }
+
+            /*
+             *  CHAT CODE
+             */
+
+            // Send a message to be displayed on LCD.
+            function sendMessage(message) {
+                $.ajax({
+                    url: "http://38.88.74.71:80/chatmobile/".concat(username),
+                    type: "GET",
+                    data: { username: username, message: "You: ".concat(message) },
+                    dataType: "text",
+                    error: function (data) {
+                        console.log("Send message failed. Error: " + data.status);
+                    }
+                });
+
+                // Scroll to the bottom of the text box to view most recent message.
+                $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
+            }
+
+            // Attempt to receive a message from the visitor.
+            function receiveMessage() {
+                $.ajax({
+                    url: "http://38.88.74.71:80/chatget/".concat(username),
+                    type: "GET",
+                    data: { username: username },
+                    success: function (data) {
+                        displayMessage(data);
+                    },
+                    error: function (data) {
+                        console.log("Get message failed. Error: " + data.status);
+                    }
+                });
+            }
+
+            // Display a message in the chat box.
+            function displayMessage(data) {
+                // Messages are formatted as an array of strings.
+                // Most recent message is index 0.
+                $("#chatBox").val("");
+                for (var i = 9; i >= 0; i--) {
+                    if (data[i] != "")
+                        if (i == 9)
+                            $("#chatBox").val($("#chatBox").val() + data[i]);
+                        else if (data[i + 1] == "")
+                            $("#chatBox").val($("#chatBox").val() + data[i]);
+                        else $("#chatBox").val($("#chatBox").val() + "\n" + data[i]);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.cpen291.cerberus" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Cerberus</name>
+    <description>
+        G20 Cerberus security app.
+    </description>
+    <author email="ben.harder2@gmail.com">
+        Group G20
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <icon src="icon.png" />
+</widget>

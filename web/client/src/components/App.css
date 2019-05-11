@@ -1,0 +1,29 @@
+html {
+  overflow-x:hidden;
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
+.error-message {
+  color: red;
+}
+
+.button-effects {
+  transition: all 0.3s ease;
+  background-color: black;
+  color:white;
+  border:solid black 1px;
+  padding: 5px;
+}
+
+.button-effects:hover {
+  transition: all 0.3s ease;
+  background-color:white;
+  color:black;
+}
+
+.modal-button {
+  width: 30%;
+}

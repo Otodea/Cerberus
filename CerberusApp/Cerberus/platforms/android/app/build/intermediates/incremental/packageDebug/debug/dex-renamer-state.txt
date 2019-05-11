@@ -1,0 +1,4 @@
+#Tue Apr 03 00:42:39 PDT 2018
+base.0=C\:\\Users\\benha\\OneDrive\\Documents\\CPEN 291\\G20_B_P2\\CerberusApp\\Cerberus\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+renamed.0=classes.dex
+file.0=C\:\\Users\\benha\\OneDrive\\Documents\\CPEN 291\\G20_B_P2\\CerberusApp\\Cerberus\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
